@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Kerekes_Ida_Roberta_Lab2.Data;
 using Kerekes_Ida_Roberta_Lab2.Models;
 
-namespace Kerekes_Ida_Roberta_Lab2.Pages.Publishers
+namespace Kerekes_Ida_Roberta_Lab2.Pages.Categories
 {
     public class DeleteModel : PageModel
     {
@@ -20,40 +20,40 @@ namespace Kerekes_Ida_Roberta_Lab2.Pages.Publishers
         }
 
         [BindProperty]
-      public Publisher Publisher { get; set; } = default!;
+      public Category Category { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Publisher == null)
+            if (id == null || _context.Category == null)
             {
                 return NotFound();
             }
 
-            var publisher = await _context.Publisher.FirstOrDefaultAsync(m => m.ID == id);
+            var category = await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (publisher == null)
+            if (category == null)
             {
                 return NotFound();
             }
             else 
             {
-                Publisher = publisher;
+                Category = category;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Publisher == null)
+            if (id == null || _context.Category == null)
             {
                 return NotFound();
             }
-            var publisher = await _context.Publisher.FindAsync(id);
+            var category = await _context.Category.FindAsync(id);
 
-            if (publisher != null)
+            if (category != null)
             {
-                Publisher = publisher;
-                _context.Publisher.Remove(Publisher);
+                Category = category;
+                _context.Category.Remove(Category);
                 await _context.SaveChangesAsync();
             }
 

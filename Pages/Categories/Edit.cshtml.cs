@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Kerekes_Ida_Roberta_Lab2.Data;
 using Kerekes_Ida_Roberta_Lab2.Models;
 
-namespace Kerekes_Ida_Roberta_Lab2.Pages.Publishers
+namespace Kerekes_Ida_Roberta_Lab2.Pages.Categories
 {
     public class EditModel : PageModel
     {
@@ -21,21 +21,21 @@ namespace Kerekes_Ida_Roberta_Lab2.Pages.Publishers
         }
 
         [BindProperty]
-        public Publisher Publisher { get; set; } = default!;
+        public Category Category { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Publisher == null)
+            if (id == null || _context.Category == null)
             {
                 return NotFound();
             }
 
-            var publisher =  await _context.Publisher.FirstOrDefaultAsync(m => m.ID == id);
-            if (publisher == null)
+            var category =  await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
+            if (category == null)
             {
                 return NotFound();
             }
-            Publisher = publisher;
+            Category = category;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace Kerekes_Ida_Roberta_Lab2.Pages.Publishers
                 return Page();
             }
 
-            _context.Attach(Publisher).State = EntityState.Modified;
+            _context.Attach(Category).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace Kerekes_Ida_Roberta_Lab2.Pages.Publishers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PublisherExists(Publisher.ID))
+                if (!CategoryExists(Category.ID))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace Kerekes_Ida_Roberta_Lab2.Pages.Publishers
             return RedirectToPage("./Index");
         }
 
-        private bool PublisherExists(int id)
+        private bool CategoryExists(int id)
         {
-          return (_context.Publisher?.Any(e => e.ID == id)).GetValueOrDefault();
+          return (_context.Category?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

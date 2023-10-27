@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Kerekes_Ida_Roberta_Lab2.Data;
 using Kerekes_Ida_Roberta_Lab2.Models;
 
-namespace Kerekes_Ida_Roberta_Lab2.Pages.Publishers
+namespace Kerekes_Ida_Roberta_Lab2.Pages.Categories
 {
     public class DetailsModel : PageModel
     {
@@ -19,23 +19,23 @@ namespace Kerekes_Ida_Roberta_Lab2.Pages.Publishers
             _context = context;
         }
 
-      public Publisher Publisher { get; set; } = default!; 
+      public Category Category { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Publisher == null)
+            if (id == null || _context.Category == null)
             {
                 return NotFound();
             }
 
-            var publisher = await _context.Publisher.FirstOrDefaultAsync(m => m.ID == id);
-            if (publisher == null)
+            var category = await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
+            if (category == null)
             {
                 return NotFound();
             }
             else 
             {
-                Publisher = publisher;
+                Category = category;
             }
             return Page();
         }
