@@ -10,6 +10,7 @@ using Kerekes_Ida_Roberta_Lab2.Models;
 
 namespace Kerekes_Ida_Roberta_Lab2.Pages.Publishers
 {
+
     public class CreateModel : PageModel
     {
         private readonly Kerekes_Ida_Roberta_Lab2.Data.Kerekes_Ida_Roberta_Lab2Context _context;
