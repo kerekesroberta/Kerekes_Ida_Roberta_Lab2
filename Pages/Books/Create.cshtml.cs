@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Kerekes_Ida_Roberta_Lab2.Data;
 using Kerekes_Ida_Roberta_Lab2.Models;
 using System.Collections;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Kerekes_Ida_Roberta_Lab2.Pages.Books
 {
+    [Authorize(Roles = "Admin" )]
     public class CreateModel : BookCategoriesPageModel
     {
         private readonly Kerekes_Ida_Roberta_Lab2.Data.Kerekes_Ida_Roberta_Lab2Context _context;
